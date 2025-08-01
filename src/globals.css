@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+    --color-darkpink: #6B374D; /* Tomato */
+    --color-lightish-pink: #EEDCD7; /* SteelBlue */
+    --color-goldish: #9A7425;
+    --color-darkish-blue: #1D2B43;
+}
+
+@layer base {
+    body {
+        @apply bg-lightish-pink;
+    }
+    h1 {
+        @apply text-5xl font-bold py-4;
+    }
+}
