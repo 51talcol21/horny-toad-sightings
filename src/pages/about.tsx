@@ -3,7 +3,7 @@ export default function About() {
         <>
             <h1>about it</h1>
             <p>
-                this is a site where we post our horny toad sightings!!! they are ethically found and released fine :)
+                this is a site where we post our horny toad sightings!!! they are ethically found and released fine :))
             </p>
         </>
         );
