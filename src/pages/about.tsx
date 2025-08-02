@@ -6,5 +6,5 @@ export default function About() {
                 this is a site where we post our horny toad sightings!!! they are ethically found and released fine :))
             </p>
         </>
-        );
+    );
 }
