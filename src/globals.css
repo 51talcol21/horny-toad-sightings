@@ -2,14 +2,15 @@
 
 @theme {
     --color-darkpink: #6B374D; /* Tomato */
-    --color-lightish-pink: #EEDCD7; /* SteelBlue */
+    --color-light-pink: #DCC3BE; /* SteelBlue */
     --color-goldish: #9A7425;
     --color-darkish-blue: #1D2B43;
+    --color-light-light-pink: #EEDCD7;
 }
 
 @layer base {
     body {
-        @apply bg-lightish-pink;
+        @apply bg-light-pink;
     }
     h1 {
         @apply text-5xl font-bold py-4;
