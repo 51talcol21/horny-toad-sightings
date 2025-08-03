@@ -64,7 +64,20 @@ export default function GalleryPage() {
   }
 
   const handleSpeckleChange = (location: string) => {
-    setFilter(prev => ({ ...prev, speckled: [location] }))
+    if (location === "") {
+      setFilter({...filter, speckled: []})
+      return
+    }
+
+    setFilter(prev => {
+      const isSelected = prev.speckled.includes(location)
+      return {
+        ...prev,
+        speckled: isSelected
+          ? prev.speckled.filter(loc => loc !== location)
+          : [...prev.speckled, location],
+      }
+    })
   }
 
   const filteredImages = images.filter(images => {
@@ -83,41 +96,32 @@ export default function GalleryPage() {
 
   return (
     <>
-      <div className="flex flex-row">
+      <div className="flex flex-row gap-4">
         <div>
           <label className="block mb-2 font-medium">Filter by location</label>
-          <div className="flex flex-col">
-          {availableLocations.map(tag => {
-              const isSelected = filter.locations.includes(tag);
+          <div className="flex flex-col gap-1">
+            {availableLocations.map(tag => {
+                const isSelected = filter.locations.includes(tag);
+                return (
+                  <button onClick={() => handleLocationChange(tag)} key={tag} value={tag} className={`cursor-pointer px-3 py-1 rounded border ${isSelected ? 'bg-sandstone text-darkpink border-darkpink' : 'bg-light-light-pink text-gray-700 border-darkish-blue'}
+                  focus:outline-none`}>
+                    {tag}
+                  </button>
+            )})}
+          </div>
+        </div>
+        <div>
+          <label className="block mb-2 font-medium">Filter by speckles</label>
+          <div className="flex flex-col gap-1">
+          {availableSpeckles.map(tag => {
+              const isSelected = filter.speckled.includes(tag);
                return (
-                <button onClick={() => handleLocationChange(tag)} key={tag} value={tag} className={`cursor-pointer px-3 py-1 rounded border ${isSelected ? 'bg-blue-500 text-white border-blue-700' : 'bg-white text-gray-700 border-gray-300'}
+                <button onClick={() => handleSpeckleChange(tag)} key={tag} value={tag} className={`cursor-pointer px-3 py-1 rounded border ${isSelected ? 'bg-sandstone text-darkpink border-darkpink' : 'bg-light-light-pink text-gray-700 border-darkish-blue'}
                 focus:outline-none`}>
                   {tag}
                 </button>
           )})}
           </div>
-        </div>
-        <div>
-          <label className="block mb-2 font-medium">Filter by location</label>
-          <select
-            multiple
-            onChange={(e) => handleSpeckleChange(e.target.value)}
-            className="block w-min h-40 p-2 border rounded mb-6"
-          >
-            {availableSpeckles.map(tag => (
-              <option key={tag} value={tag}>
-                {tag}
-              </option>
-            ))}
-          </select>
-          {availableLocations.map(tag => {
-              const isSelected = filter.locations.includes(tag);
-               return (
-                <button onClick={() => handleLocationChange(tag)} key={tag} value={tag} className={`cursor-pointer px-3 py-1 rounded border ${isSelected ? 'bg-blue-500 text-white border-blue-700' : 'bg-white text-gray-700 border-gray-300'}
-                focus:outline-none`}>
-                  {tag}
-                </button>
-          )})}
         </div>
       </div>
 
