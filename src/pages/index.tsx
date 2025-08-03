@@ -84,7 +84,6 @@ export default function GalleryPage() {
     const matchesTags =
       filter.tags.length === 0 || filter.tags.every(tag => images.tags.includes(tag))
   
-      console.log(filter.locations, images.location)
     const matchesLocations =
       filter.locations.length === 0 || filter.locations.includes(images.location)
 
@@ -96,7 +95,7 @@ export default function GalleryPage() {
 
   return (
     <>
-      <div className="flex flex-row gap-4">
+      <div className="p-4 flex flex-row gap-4 p-4 flex-wrap">
         <div>
           <label className="block mb-2 font-medium">Filter by location</label>
           <div className="flex flex-col gap-1">
@@ -127,9 +126,9 @@ export default function GalleryPage() {
 
       <div className="p-4 flex flex-wrap items-stretch gap-4">
       {filteredImages.map((img) => (
-        <div key={img.filename} className="flex flex-col w-48 border-darkpink border-2 p-2 bg-light-light-pink">
+        <div key={img.filename} className="flex flex-col md:w-48 w-30 border-darkpink border-2 p-2 bg-light-light-pink">
             <img src={`${basePath}/images/${img.filename}`} alt={img.filename} className="h-auto w-full"/>
-            <div className="text-sm mt-auto">{img.date} {img.time} <br /> Location: {img.location} <br /> Speckled: {img.speckled} <br /> Status: {img.alive}</div>
+            <div className="md:text-sm text-xs mt-auto">{img.date} {img.time} <br /> Location: {img.location} <br /> Speckled: {img.speckled} <br /> Status: {img.alive}</div>
         </div>
       ))}
     </div>
